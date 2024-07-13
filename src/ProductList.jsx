@@ -212,10 +212,35 @@ function ProductList() {
                 }
             ]
         }
+    
     ];
 
+    const renderPlantDetails = () => {
+        const plantElements = [];
+        
+        plantsArray.forEach(category => {
+          category.plants.forEach(plant => {
+            plantElements.push(
+              <div className="product" key={plant.name}>
+                <h3>{plant.name}</h3>
+                <img src={plant.image} alt={plant.name} />
+                <p>{plant.description}</p>
+                <p>Cost: {plant.cost}</p>
+              </div>
+            );
+          });
+        });
+        
+        return plantElements;
+      };
+    
+      return (
+        <div className="product-grid">
+          {renderPlantDetails()}
+        </div>
+      );
+    }
 
-    plantsArray.forEach((item) => {
         {plantsArray.map((category, index) => (
             <div key={index}>
               <h1><div>{category.category}</div></h1>
@@ -231,8 +256,7 @@ function ProductList() {
               </div>
             </div>
           ))}
-})
-    }
+}
 
     const [addedToCart, setAddedToCart] = useState({});
 
